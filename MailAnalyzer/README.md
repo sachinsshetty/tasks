@@ -17,14 +17,15 @@
 * TODO
   1. Setup Kafka streams  - confluent kafka - docker compose setup
   2. Generate stream of mail address - Random address generation + Validation  / Use sample json
-  3. Store processed events in Database - PostgreSQL - docker container
-  4. Data - mail address
-  5. Count - unique mail address and domains
+  3. Data - mail address
+  4. Count - unique mail address and domains
   
 * Tech Stack
   * SpringBoot - Framework
-  * SwaggerUI - REST endpoint + Documentation
-  * PostgreSQL
   * kafka streams - confluent inc - docker compose
   * Junit - Testing 
-  * Testcontainer - end to end testing
+  * SwaggerUI - REST endpoint + Documentation
+
+* References
+  * [Interactive Queries](https://docs.confluent.io/platform/current/streams/developer-guide/interactive-queries.html)
+  * https://www.baeldung.com/spring-boot-kafka-streams
