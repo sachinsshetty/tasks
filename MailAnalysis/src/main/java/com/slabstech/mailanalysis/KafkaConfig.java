@@ -1,13 +1,4 @@
-package com.slabstech.mailanalyzer;
-
-import static org.apache.kafka.streams.StreamsConfig.APPLICATION_ID_CONFIG;
-import static org.apache.kafka.streams.StreamsConfig.BOOTSTRAP_SERVERS_CONFIG;
-import static org.apache.kafka.streams.StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG;
-import static org.apache.kafka.streams.StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG;
-import static org.apache.kafka.streams.StreamsConfig.STATE_DIR_CONFIG;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.slabstech.mailanalysis;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.Serdes;
@@ -20,6 +11,11 @@ import org.springframework.kafka.annotation.KafkaStreamsDefaultConfiguration;
 import org.springframework.kafka.config.KafkaStreamsConfiguration;
 import org.springframework.kafka.config.TopicBuilder;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.apache.kafka.streams.StreamsConfig.*;
+
 @Configuration
 @EnableKafka
 @EnableKafkaStreams
@@ -28,8 +24,8 @@ public class KafkaConfig {
     @Value(value = "${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
 
-  //  @Value(value = "${spring.kafka.streams.state.dir}")
- //   private String stateStoreLocation;
+   // @Value(value = "${spring.kafka.streams.state.dir}")
+   // private String stateStoreLocation;
 
     @Bean(name = KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME)
     KafkaStreamsConfiguration kStreamsConfig() {
@@ -39,7 +35,7 @@ public class KafkaConfig {
         props.put(DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         props.put(DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         // configure the state location to allow tests to use clean state for every run
-      //  props.put(STATE_DIR_CONFIG, stateStoreLocation);
+       // props.put(STATE_DIR_CONFIG, stateStoreLocation);
 
         return new KafkaStreamsConfiguration(props);
     }
