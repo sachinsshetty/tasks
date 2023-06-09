@@ -45,7 +45,7 @@ class MailAnalyzerApplicationLiveTest {
     private final BlockingQueue<String> output = new LinkedBlockingQueue<>();
 
     @Container
-    private static final KafkaContainer KAFKA = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:5.4.3"));
+    private static final KafkaContainer KAFKA = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.4.0"));
 
     @TempDir
     private static File tempDir;
@@ -136,7 +136,7 @@ class MailAnalyzerApplicationLiveTest {
     @DynamicPropertySource
     static void registerKafkaProperties(DynamicPropertyRegistry registry) {
         registry.add("spring.kafka.bootstrap-servers", KAFKA::getBootstrapServers);
-        registry.add("spring.kafka.streams.state.dir", tempDir::getAbsolutePath);
+      //  registry.add("spring.kafka.streams.state.dir", tempDir::getAbsolutePath);
     }
 
 }

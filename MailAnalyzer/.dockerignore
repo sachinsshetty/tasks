@@ -1,0 +1,56 @@
+# Ignore Roadiz tools and cache for
+# creating a docker image
+.dockerignore
+.DS_Store
+.git
+.github
+.gitignore
+.gitlab-ci.yml
+.gitmodules
+.idea
+.data
+.sass-cache
+tests
+README.md
+Dockerfile
+Dockerfile.archive
+docker-compose.yml
+
+# exclude hidden dirs .git etc.
+.*
+*.iml
+gradle
+src
+# exclude build binaries
+#build/*
+# except files for docker
+!build/docker
+
+*/temp*
+*/*/temp*
+docker
+.vagrant
+.data
+.idea
+app/sessions/*
+app/logs/*
+app/cache/*
+app/gen-src/*
+app/conf/config.yml
+app/*.zip
+app/*.sql
+app/*.tar.gz
+*.zip
+*.sql
+*.log
+*.tar.gz
+themes/*/build
+themes/*/node_modules
+themes/*/app
+*/*/*/node_modules
+files/*
+web/files/*
+*/*/*/src-img
+*/*/src-img
+*/*.log
+
