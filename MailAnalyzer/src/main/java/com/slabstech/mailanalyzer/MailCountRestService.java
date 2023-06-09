@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-public class WordCountRestService {
+public class MailCountRestService {
 
     private final StreamsBuilderFactoryBean factoryBean;
 

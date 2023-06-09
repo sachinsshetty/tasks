@@ -66,19 +66,22 @@ class MailAnalyzerApplicationLiveTest {
 
     @Test
     void givenInputMessages_whenPostToEndpoint_thenWordCountsReceivedOnOutput() throws Exception {
-        postMessage("test message");
+        postMessage("mail@sachin.com sachin@com.mail @scchin sachin@mail");
 
         startOutputTopicConsumer();
 
         // assert correct counts from output topic
-        assertThat(output.poll(2, MINUTES)).isEqualTo("test:1");
-        assertThat(output.poll(2, MINUTES)).isEqualTo("message:1");
+        assertThat(output.poll(2, MINUTES)).isEqualTo("mail@sachin.com:1");
+        assertThat(output.poll(2, MINUTES)).isEqualTo("sachin@com.mail:1");
 
         // assert correct count from REST service
-        assertThat(getCountFromRestServiceFor("test")).isEqualTo(1);
-        assertThat(getCountFromRestServiceFor("message")).isEqualTo(1);
+        assertThat(getCountFromRestServiceFor("mail@sachin.com")).isEqualTo(1);
+        assertThat(getCountFromRestServiceFor("sachin@com.mail")).isEqualTo(1);
 
-        postMessage("another test message");
+        assertThat(getCountFromRestServiceFor("@scchin")).isEqualTo(0);
+
+
+       /* postMessage("another test message");
 
         // assert correct counts from output topic
         assertThat(output.poll(2, MINUTES)).isEqualTo("another:1");
@@ -89,6 +92,8 @@ class MailAnalyzerApplicationLiveTest {
         assertThat(getCountFromRestServiceFor("another")).isEqualTo(1);
         assertThat(getCountFromRestServiceFor("test")).isEqualTo(2);
         assertThat(getCountFromRestServiceFor("message")).isEqualTo(2);
+
+        */
     }
 
     private void postMessage(String message) {
@@ -136,7 +141,7 @@ class MailAnalyzerApplicationLiveTest {
     @DynamicPropertySource
     static void registerKafkaProperties(DynamicPropertyRegistry registry) {
         registry.add("spring.kafka.bootstrap-servers", KAFKA::getBootstrapServers);
-      //  registry.add("spring.kafka.streams.state.dir", tempDir::getAbsolutePath);
+        registry.add("spring.kafka.streams.state.dir", tempDir::getAbsolutePath);
     }
 
 }

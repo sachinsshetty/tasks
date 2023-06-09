@@ -16,19 +16,19 @@ import org.apache.kafka.streams.TopologyTestDriver;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class WordCountProcessorUnitTest {
+class MailCountProcessorUnitTest {
 
-    private WordCountProcessor wordCountProcessor;
+    private MailCountProcessor mailCountProcessor;
 
     @BeforeEach
     void setUp() {
-        wordCountProcessor = new WordCountProcessor();
+        mailCountProcessor = new MailCountProcessor();
     }
 
     @Test
     void givenInputMessages_whenProcessed_thenWordCountIsProduced() {
         StreamsBuilder streamsBuilder = new StreamsBuilder();
-        wordCountProcessor.buildPipeline(streamsBuilder);
+        mailCountProcessor.buildPipeline(streamsBuilder);
         Topology topology = streamsBuilder.build();
 
         try (TopologyTestDriver topologyTestDriver = new TopologyTestDriver(topology, new Properties())) {

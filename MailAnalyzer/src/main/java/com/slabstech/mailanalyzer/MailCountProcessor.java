@@ -15,18 +15,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WordCountProcessor {
+public class MailCountProcessor {
 
     private static final Serde<String> STRING_SERDE = Serdes.String();
 
     @Autowired
     void buildPipeline(StreamsBuilder streamsBuilder) {
+
+        String whitespaceMetaChar = "\\s";
         KStream<String, String> messageStream = streamsBuilder
                 .stream("input-topic", Consumed.with(STRING_SERDE, STRING_SERDE));
 
         KTable<String, Long> wordCounts = messageStream
                 .mapValues((ValueMapper<String, String>) String::toLowerCase)
-                .flatMapValues(value -> Arrays.asList(value.split("\\W+")))
+                .flatMapValues(value -> Arrays.asList(value.split(whitespaceMetaChar)))
                 .groupBy((key, word) -> word, Grouped.with(STRING_SERDE, STRING_SERDE))
                 .count(Materialized.as("counts"));
 
