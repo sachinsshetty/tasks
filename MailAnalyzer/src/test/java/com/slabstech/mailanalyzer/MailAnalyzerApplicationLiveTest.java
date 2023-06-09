@@ -66,7 +66,9 @@ class MailAnalyzerApplicationLiveTest {
 
     @Test
     void givenInputMessages_whenPostToEndpoint_thenWordCountsReceivedOnOutput() throws Exception {
-        postMessage("mail@sachin.com sachin@com.mail @scchin sachin@mail");
+
+        String eventStream = "mail@sachin.com sachin@com.mail @scchin sachin@mail";
+        postMessage(eventStream);
 
         startOutputTopicConsumer();
 
@@ -94,6 +96,7 @@ class MailAnalyzerApplicationLiveTest {
         assertThat(getCountFromRestServiceFor("message")).isEqualTo(2);
 
         */
+      //  output.clear();
     }
 
     private void postMessage(String message) {

@@ -29,3 +29,4 @@
 * References
   * [Interactive Queries](https://docs.confluent.io/platform/current/streams/developer-guide/interactive-queries.html)
   * https://www.baeldung.com/spring-boot-kafka-streams
+  * https://www.baeldung.com/java-email-validation-regex
