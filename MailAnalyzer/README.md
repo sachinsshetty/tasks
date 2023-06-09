@@ -30,3 +30,6 @@
   * [Interactive Queries](https://docs.confluent.io/platform/current/streams/developer-guide/interactive-queries.html)
   * https://www.baeldung.com/spring-boot-kafka-streams
   * https://www.baeldung.com/java-email-validation-regex
+  * https://github.com/confluentinc/cp-all-in-one/blob/7.4.0-post/cp-all-in-one/docker-compose.yml
+  * https://github.com/provectus/kafka-ui/blob/master/documentation/compose/kafka-ui.yaml
+  * https://github.com/provectus/kafka-ui

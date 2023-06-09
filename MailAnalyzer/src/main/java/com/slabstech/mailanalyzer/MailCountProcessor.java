@@ -35,16 +35,14 @@ public class MailCountProcessor {
                 .stream("input-topic", Consumed.with(STRING_SERDE, STRING_SERDE));
         String regexPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
 
-        int count = EmailValidation.uniqueCounts(messageStream.toString());
-
 
         KTable<String, Long> wordCounts =
-                /*messageStream
+                messageStream
                 .mapValues((ValueMapper<String, String>) String::toLowerCase)
-                .flatMapValues(value -> Arrays.asList(value.split(whitespaceMetaChar)) )
+                .flatMapValues(value -> (Arrays.stream(value.split(whitespaceMetaChar)).distinct().filter(val -> patternMatches(val, regexPattern))).toList() )
                 .groupBy((key, word) -> word, Grouped.with(STRING_SERDE, STRING_SERDE))
                 .count(Materialized.as("counts"));
-*/
+
         wordCounts.toStream().to("output-topic");
     }
 
