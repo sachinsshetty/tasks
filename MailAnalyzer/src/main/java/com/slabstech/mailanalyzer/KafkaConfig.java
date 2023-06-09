@@ -39,7 +39,7 @@ public class KafkaConfig {
         props.put(DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         props.put(DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         // configure the state location to allow tests to use clean state for every run
-        props.put(STATE_DIR_CONFIG, stateStoreLocation);
+    //    props.put(STATE_DIR_CONFIG, stateStoreLocation);
 
         return new KafkaStreamsConfiguration(props);
     }

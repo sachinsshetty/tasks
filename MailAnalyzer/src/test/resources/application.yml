@@ -3,6 +3,9 @@ spring:
     consumer:
       auto-offset-reset: earliest
       group-id: slabstech
+    streams:
+      state:
+        dir= "./"
 test:
   topic: embedded-test-topic
 

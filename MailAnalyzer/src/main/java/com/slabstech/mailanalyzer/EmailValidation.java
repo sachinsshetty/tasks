@@ -16,10 +16,19 @@ public class EmailValidation {
             .matches();
     }
 
-    public static Integer uniqueCounts(String evenStream){
+    public static Integer uniqueCounts(String evenStreams){
 
+        String eventStream = "mail@sachin.com sachin@com.mail @scchin sachin@mail";
         String whitespaceMetaChar = "\\s";
-        //Integer count = Arrays.stream(evenStream.split(whitespaceMetaChar)).map(String::toLowerCase).filter()
+        String regexPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+
+
+        long count = Arrays.stream(eventStream.split(whitespaceMetaChar)).
+                map(String::toLowerCase).
+                distinct().
+                filter( val ->patternMatches(val,regexPattern)).count() ;
+
+        System.out.println(count);
 
         return 0;
     }
