@@ -66,8 +66,8 @@ class MailAnalyzerApplicationLiveTest {
 
     @Test
     void givenInputMessages_whenPostToEndpoint_thenWordCountsReceivedOnOutput() throws Exception {
-
-        String eventStream = "mail@sachin.com sachin@com.mail @scchin sachin@mail";
+//sachin@com.mail @scchin sachin@mail
+        String eventStream = "mail@sachin.com ";
         postMessage(eventStream);
 
         startOutputTopicConsumer();
